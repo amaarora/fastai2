@@ -216,6 +216,7 @@ def file_extract(fname, dest=None):
 
 # Cell
 def _try_from_storage(dest, storage):
+    "an internal function to create symbolic links for files from `storage` to `dest` if `storage` exists"
     if not storage.exists(): return
     os.makedirs(dest, exist_ok=True)
     for f in storage.glob('*'): os.symlink(f, dest/f.name, target_is_directory=f.is_dir())
